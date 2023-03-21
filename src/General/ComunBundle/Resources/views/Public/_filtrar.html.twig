@@ -1,0 +1,22 @@
+{% set ord    = app.session.get('ord') %}
+{% set orddir = app.session.get('orddir') %}
+
+{% block grid %}<div class="grid_10 prefix_3">{% endblock %}
+<br />
+<fieldset>
+    <legend>Filtrar ({{ tit|default(ruta|capitalize) }}): Total:{{ cantReg }}</legend>
+    <form action="{{ path(ruta ~ '_procesarfiltro') }}" method="post" {{ form_enctype(form) }}>
+        <div>
+        {% block datos %}{% endblock %}
+        </div>
+        {{ form_rest(form) }}
+
+        <center>
+        <button type="submit" class='btn'>Filtrar</button>
+        <button type="reset"  class='btn_gb'>Limpiar Campos</button>
+        </center>
+    </form>
+</fieldset>    
+</div><div class="clear"></div>
+{% block btnVolver %}<a href="{{ path(ruta ~ '_listado', { 'ord': ord, 'orddir': orddir }) }}" class='btn_ga'>Volver al listado</a>{% endblock %}
+<script type="text/javascript">$(function(){ $("form:not(.filter) :input:visible:enabled:first").focus(); });</script>

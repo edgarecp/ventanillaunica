@@ -1,0 +1,27 @@
+{% extends "GeneralComunBundle::layout.html.twig" %}
+
+{% block style %}{% endblock %}
+{% block oJQ %}{% endblock %}
+{% block header %}{% endblock %}
+{% block menu %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block cuerpo %}
+<center>
+<img src="{{ asset('bundles/generalcomun/imagenes/banner.jpg') }}" alt="banner" />
+<br /><br />
+<div class="grid_6 prefix_5">
+<fieldset>
+   <legend>CLAVE DE ACCESO :</legend>
+   {% if error %}<div class='error'>{{ error.message|trans() }}</div>{% endif %}
+    <form action="{{ path('logincheck') }}" method="post">
+        <div><label for="username">Usuario:</label> <input type="text" id="username" name="_username" value="{{ last_username }}" class="corto"/></div>
+        <div><label for="password">Contraseña:</label> <input type="password" id="password" name="_password" class="corto"/></div>
+        <button type="submit" class='btn'>Entrar</button>
+    </form>
+</fieldset>
+</div><div class="clear"></div>
+<br /><br />
+<img src="{{ asset('bundles/generalcomun/imagenes/logoPrograma.jpg') }}" width='338' height='272' alt='Programa' />
+</center>
+{% endblock %}

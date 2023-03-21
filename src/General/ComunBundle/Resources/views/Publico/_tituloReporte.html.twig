@@ -1,0 +1,28 @@
+{% set vBlqIzq = blqIzq|default('logo') %}
+
+<div class="grid_3">
+{% if vBlqIzq == 'logo' %}
+   <img src="{{ asset('bundles/generalcomun/imagenes/logoEmpresa.jpg') }}" width='105' height ='57' alt="CPS" />
+{% else %}
+    Caja Petrolera CPS
+    <br />
+    {{ sistema|default('nombreSistema') }}
+{% endif %}    
+</div>
+
+<div class="grid_10">
+    <center>
+    <b>
+    {{ centro|default('') }}<br />
+    {{ centro2|default('') }}
+    </b>
+    </center>
+</div>
+
+<div class="grid_3">
+    <b>fecha:</b>{{ "now"|date('d/m/Y') }}
+    <br />
+    <b>Hora :</b>{{ 'now'|date('H:i') }}
+</div>
+
+<div class="clear"></div>

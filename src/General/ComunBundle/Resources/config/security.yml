@@ -1,0 +1,58 @@
+security:
+    encoders:
+        General\ComunBundle\Entity\Usuario:
+            algorithm: md5
+            encode_as_base64: false
+            iterations: 1
+        General\EmpresaBundle\Entity\Servicio:
+            algorithm: md5
+            encode_as_base64: false
+            iterations: 1        
+
+    providers:
+        usuario:
+            entity: { class: General\ComunBundle\Entity\Usuario, property: login }
+            
+        servicio:
+            entity: { class: General\EmpresaBundle\Entity\Servicio, property: login }
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+            
+        Servicio:
+            pattern: ^/modservicio/*
+            anonymous: ~
+            provider: servicio
+            form_login:
+                login_path: /modservicio/seguridad/login
+                check_path: /modservicio/seguridad/logincheck
+                default_target_path: /modservicio/acceso/registraringreso
+                always_use_default_target_path: true
+            access_denied_url: /modservicio/seguridad/accesodenegado
+            logout:
+                path: /modservicio/seguridad/logout
+                target: /modservicio/acceso/registrarsalida
+            
+        Adm:
+            pattern: ^/*
+            anonymous: ~
+            provider: usuario
+            form_login:
+                login_path: /seguridad/login
+                check_path: /seguridad/logincheck
+                default_target_path: /acceso/registraringreso
+                always_use_default_target_path: true
+            access_denied_url: /seguridad/accesodenegado
+            logout:
+                path: /seguridad/logout
+                target: /acceso/registrarsalida
+            
+    access_control:
+        #- { path: ^/*,                          roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/seguridad/login,             roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/modservicio/seguridad/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/modservicio/*,               roles: ROLE_SERVICIO }
+        - { path: ^/*,                           roles: ROLE_ADMIN }
+

@@ -1,0 +1,17 @@
+{% set cxp    = app.session.get('cxp') %}
+<div class="grid_3"><center>
+    {% if vBtnFil == 'S' %}<a href="{{ path(rut ~ '_filtrar') }}" class='btnGFil'>Filtrar</a>{% endif %}
+    {% if vBtnNew == 'S' %}<a href="{{ path(rut ~ '_new' ) }}"    class='btn'>Nuevo</a>{% endif %}
+    &nbsp;
+</center></div>
+<div class="grid_10 alpha omega">{{ knp_pagination_render(paginacion) }}</div>
+{% if vCambiarCxp == 'S' %}
+<div class="grid_2"><center>
+    <div class="cxp">Item x pagina:<br>
+    <a href="{{ path(rut ~ '_grabarSesion', { 'var':'cxp', 'val': 20 }) }}"  class="{{ cxp == 20  ? 'btn_d' : 'btn_o'}}">20</a>
+    <a href="{{ path(rut ~ '_grabarSesion', { 'var':'cxp', 'val': 50 }) }}"  class="{{ cxp == 50  ? 'btn_d' : 'btn_o'}}">50</a>
+    <a href="{{ path(rut ~ '_grabarSesion', { 'var':'cxp', 'val': 100 }) }}" class="{{ cxp == 100 ? 'btn_d' : 'btn_o'}}">100</a>
+    </div>
+</center></div>
+{% endif %}
+<div class="clear"></div>

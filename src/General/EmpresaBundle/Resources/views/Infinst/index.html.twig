@@ -1,0 +1,31 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+{% block id 'Ambiente' %}
+
+{% block javascripts %}
+     <script src="{{ asset('bundles/Generalcomun/jquery/jquery.min.js') }}"></script>
+     <script src="{{ asset('bundles/Generalcomun/tinymce/tiny_mce.js') }}"></script>    
+    {{ form_javascript(form) }}
+{% endblock %}
+
+{% block cuerpo %}
+<br />
+<form action="{{ path('infinst_update') }}" method="post" {{ form_enctype(form) }}>
+   <div class="grid_12 prefix_2">
+   <fieldset>
+      <legend>INFORMACION INSTITUCIONAL</legend> 
+   <div class='error'>{{ form_errors(form) }}</div>   
+   <div>   
+      <div>     
+         {{ form_errors(form.descripcion) }}
+         {{ form_widget(form.descripcion, { 'attr': { 'class': 'grande' } }) }}
+         
+         {{ form_rest(form) }} 
+      </div>
+  </div>     
+  </fieldset>
+  </div><div class="clear"></div>    
+      <p><center><button type="submit" class='btn'>ACTUALIZAR</button>
+      </center></p>
+</form>
+</center>
+{% endblock %}

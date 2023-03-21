@@ -1,0 +1,24 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block cuerpo %}
+<div class="grid_8 prefix_4">
+<br />
+<fieldset>
+   <legend>Acerca del Programa</legend>
+   <center><img src="{{ asset('bundles/generalcomun/imagenes/logoPrograma' ~ post|default('') ~ '.jpg') }}" width='227' height='183' alt="Programa"/></center>
+   <br>
+   <table class='index'>
+      <tbody>    
+         <tr><td>Nombre     </td><td>{{ entity.nombre }}  </td></tr>
+         <tr><td>Descripcion</td><td>{{ entity.descripcion }} </td></tr>
+         <tr><td>Version    </td><td>{{ entity.version }} </td></tr>
+         <tr><td>Licencia   </td><td>{{ entity.licencia }}</td></tr>
+         <tr><td>Autor      </td><td align="center"><img src="{{ asset('bundles/generalcomun/imagenes/logoAutor.jpg') }}" width='80px' height='60px' alt="Autor"/><br>
+                                    email:    hansgc@hotmail.com
+                                 </td>
+         </tr>
+      </tbody>
+   </table>
+</fieldset>
+</div>
+{% endblock %}

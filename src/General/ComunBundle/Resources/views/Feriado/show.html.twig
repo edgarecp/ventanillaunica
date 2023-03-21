@@ -1,0 +1,11 @@
+{% extends 'GeneralComunBundle::layout.html.twig' %} 
+
+{% block cuerpo %}
+    {% embed 'GeneralComunBundle:Public:_show.html.twig' %}
+        {% block datos %}    
+            <tr><th>Nombre</th><td>{{ entity.nombre }}</td></tr>
+            <tr><th>Fecha </th><td>{{ entity.fecha|date('d/m/Y') }}</td></tr>
+            <tr><th>Tipo</th><td>{{ entity.tipo }}</td></tr>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

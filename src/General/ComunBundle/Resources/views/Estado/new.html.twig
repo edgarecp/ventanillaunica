@@ -1,0 +1,22 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block cuerpo %}
+    {% set tam = '8' %}    
+    {% set cantTrans = 0 %}
+    {% embed 'GeneralComunBundle:Public:_new.html.twig' %}
+        {% block datos %}
+        <table class="sinBorde">
+        <tr>
+            <td>{{ form_label(form.nombre) }}</td>
+            <td>{{ form_errors(form.nombre) }}{{ form_widget(form.nombre) }}</td>
+        </tr><tr>
+            <td>{{ form_label(form.abreviatura) }}</td>
+            <td>{{ form_errors(form.abreviatura) }}{{ form_widget(form.abreviatura, { 'attr' : { 'class': 'corto' }}) }}</td>
+        </tr><tr>
+            <td>{{ form_label(form.tipo) }}</td>
+            <td>{{ form_errors(form.tipo) }}{{ form_widget(form.tipo) }}</td>
+        </tr>
+        </table>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

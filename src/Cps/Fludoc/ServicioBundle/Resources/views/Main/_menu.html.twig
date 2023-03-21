@@ -1,0 +1,18 @@
+{% ui_menu showDelay=0 hideDelay=0 %}
+    {% menu_item label="Inicio"          onclick="href='"~ path('main_serv') ~ "'" %}
+    {% menu_item label="Por Recepcionar" onclick="href='"~ path('docrec_serv', {'tipo':'XRecep'}) ~ "'" %}
+    {% menu_item label="Recepcionadas"   onclick="href='"~ path('docrec_serv', {'tipo':'Recep'}) ~ "'" %}
+    {% menu_item label="Historicos"      onclick="href='"~ path('docrec_serv', {'tipo':'Histo'}) ~ "'" %}
+       
+    {% submenu label="Ambiente" %}
+        {% menu_item label="Servicio"         onclick="href='"~ path('servicio_serv') ~ "'" %}
+        {% menu_item label="Cambiar Password" onclick="href='"~ path('servicio_serv_cambpass') ~ "'" %}
+    {% end_submenu %}
+
+    {% submenu label="Ayuda1" %}
+        {% menu_item label="Ayuda"     onclick="href='"~ path('ayuda_serv') ~ "'" %}
+        {% menu_item label="Acerca de" onclick="href='"~ path('acercade_serv') ~ "'" %}
+    {% end_submenu %}
+    
+    {% menu_item label="Salir"  onclick="href='"~ path('acceso_regsalida_serv') ~ "'" %}
+{% end_ui_menu %}

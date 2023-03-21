@@ -1,0 +1,13 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block cuerpo %}
+    {% embed 'GeneralComunBundle:Public:_show.html.twig' %}
+        {% block datos %}    
+            <tr><th>Usuario</th><td>{{ entity.usuario }}</td></tr>                    
+            <tr><th>CreadoEl</th><td>{{ entity.creadoEl|date('d/m/Y H:i') }}</td></tr>
+            <tr><th>DesdeEl</th><td>{{ entity.desdeEl|date('d/m/Y') }}</td></tr>    
+            <tr><th>HastaEl</th><td>{{ entity.hastaEl|date('d/m/Y') }}</td></tr>         
+            <tr><th>Descripcion</th><td>{{ entity.descripcion }}</td></tr>    
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

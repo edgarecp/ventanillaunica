@@ -1,0 +1,40 @@
+{% embed 'GeneralComunBundle:Public:_showDet.html.twig' %}
+{% block titulos %}
+    <th width= "5%">Id</th>
+    <th width= "9%">Fecha</th>
+    <th width="28%">Servicio</th>
+    <th width="37%">Observacion</th>
+    <th width= "9%">Estado</th>
+    <th width= "9%">Llegada</th>
+    <th width= "3%">Op</th>
+{% endblock %}
+
+{% block datos %}
+    {% for derivacion in entity.derivaciones %}
+        <tr>
+            <td align='center'>{{ derivacion.id }}</td>
+            <td class='fch'>{{ derivacion.fecha|date('d/m/Y H:i') }}</td>
+            <td>{{ derivacion.servicio }}</td>
+            <td>{{ derivacion.observacion }}</td>
+            <td align='center'>{{ derivacion.estado.abreviatura }}</td>
+            <td class='fch'>{% if derivacion.recepcionEl %}{{ derivacion.recepcionEl|date('d/m/Y H:i') }} {% endif %}</td>
+            <td>{% if loop.last and entity.estadoActual.id==1 %}
+                    <a href="#" onclick="confirmDelete('{{ path('adm_derivacion_delete', { 'id': derivacion.id }) }}', {{ derivacion.id }} );" class='btn_b'><span class="ui-icon ui-icon-trash"></span></a>
+                {% endif %}
+            </td>
+        </tr>
+
+        {% for informe in derivacion.informes %}
+            <tr>
+                <td></td>
+                <td class='fch'>{{ informe.creadoEl|date('d/m/Y H:i') }}</td>
+                <td></td>                
+                <td>{{ informe.detalle }}</td>
+                <td align='center'>{{ informe.estado.abreviatura }}</td>
+            </tr>
+        {% endfor %}
+
+    {% endfor %}
+{% endblock %}
+{% block acciones %}{% endblock %}
+{% endembed %}

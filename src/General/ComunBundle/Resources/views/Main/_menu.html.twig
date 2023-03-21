@@ -1,0 +1,30 @@
+{% ui_menu showDelay=0 hideDelay=0 %}
+    {% menu_item label="Inicio"                  onclick="href='"~ path('main') ~ "'" %}
+    {% menu_item label="Recepcion de Documentos" onclick="href='"~ path('adm_docrec') ~ "'" %}
+   
+    {% submenu label="Reporte" %}
+        {% menu_item label="Acceso"              onclick="href='"~ path('acceso') ~ "'" %}
+    {% end_submenu %}
+    
+    {% submenu label="Ambiente" %}
+        {% menu_item label="Servicio"            onclick="href='"~ path('servicio') ~ "'" %}
+        {% if app.user.perfil.id in [1,2] %}
+            {% menu_item label="Noticia"         onclick="href='"~ path('noticia') ~ "'" %}
+        {% endif %}
+        {% menu_item label="Tipo de Estado"      onclick="href='"~ path('geco_estado') ~ "'" %}
+        {% if app.user.perfil.id in [1,2] %}
+            {% menu_item label="Usuario"         onclick="href='"~ path('usuario') ~ "'" %}
+            {% if app.user.perfil.id == 1 %}
+                {% menu_item label="Tipo Perfil Usuario"      onclick="href='"~ path('perfil') ~ "'" %}
+            {% endif %}
+        {% endif %}
+        {% menu_item label="Cambiar Password"    onclick="href='"~ path('usuario_cambpass') ~ "'" %}
+    {% end_submenu %}
+
+    {% submenu label="Ayuda" %}
+        {% menu_item label="Ayuda"     onclick="href='"~ path('ayuda') ~ "'" %}
+        {% menu_item label="Acerca de" onclick="href='"~ path('acercade') ~ "'" %}
+    {% end_submenu %}
+    
+    {% menu_item label="Salir"  onclick="href='"~ path('acceso_regsalida') ~ "'" %}
+{% end_ui_menu %}

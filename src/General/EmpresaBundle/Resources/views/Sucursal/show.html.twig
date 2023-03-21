@@ -1,0 +1,15 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block cuerpo %}
+    {% embed 'GeneralComunBundle:Public:_show.html.twig' %}
+        {% block datos %}    
+            <tr><th>Id         </th><td>{{ entity.id }}</td></tr>    
+            <tr><th>Nombre     </th><td>{{ entity.nombre }}</td></tr>    
+            <tr><th>Abreviatura</th><td>{{ entity.abreviatura }}</td></tr>
+            <tr><th>Direccion  </th><td>{{ entity.direccion }}<br />
+                                    <img src="{{ asset(directorio_imagenes ~ 'sucursal/' ~ entity.foto) }}" />
+            {# <img src="{{ image('bundles/relojmarcadorbackend/fotoEmpleado/' ~ entity.id ~ '.jpg').resize(200,200) }}" /> #}
+            <tr><th>IpMaqCli   </th><td>{{ entity.ipMaqCli }}</td></tr> 
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

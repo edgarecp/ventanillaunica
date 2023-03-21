@@ -1,0 +1,21 @@
+{% extends 'GeneralComunBundle::layout.html.twig' %} 
+{% block cuerpo %}
+    {% set accReg = 'N' %}
+    {% set btnNew = 'N' %}
+    {% embed 'GeneralComunBundle:Public:_listado.html.twig' %}
+        {% block titulo %}
+            {# Max 85% #}        
+            <th width='35%'>{% set fld = 'usuario.nombreCompleto' %}{{ knp_pagination_sortable(paginacion, 'Nombre Completo', 'u.paterno, u.materno, u.nombre') }}</th>
+            <th width='20%'>{% set fld = 'maquina' %}   {{ knp_pagination_sortable(paginacion, fld|capitalize, 't.' ~ fld) }}</th>
+            <th width='20%'>{% set fld = 'ingresoEl' %} {{ knp_pagination_sortable(paginacion, fld|capitalize, 't.' ~ fld) }}</th>
+            <th width='20%'>{% set fld = 'salidaEl' %}  {{ knp_pagination_sortable(paginacion, fld|capitalize, 't.' ~ fld) }}</th>
+        {% endblock %}      
+        
+        {% block detalle %}  
+            <td>{{ entity.usuario }}</td>
+            <td>{{ entity.maquina }}</td>
+            <td class='fch'>{{ entity.ingresoEl|date('d/m/Y h:i:s') }}</td>             
+            <td class='fch'>{% if entity.salidaEl %}{{ entity.salidaEl|date('d/m/Y h:i:s') }}{% endif%}</td>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block cuerpo %}
+    {% set tam = '12' %}
+    {% set cantTrans = entity.derivaciones|length %}
+   
+    {% embed 'GeneralComunBundle:Public:_new.html.twig' %}
+        {% block datos %}
+            <div>
+                {{ form_errors(form.nombre) }}
+                {{ form_label(form.nombre) }}
+                {{ form_widget(form.nombre, { 'attr' : { 'class': 'mediano' }}) }}
+            </div>
+            <div>
+                {{ form_errors(form.abreviatura) }}
+                {{ form_label(form.abreviatura) }}
+                {{ form_widget(form.abreviatura, { 'attr' : { 'class': 'corto' }}) }}
+            </div>
+            <div>{{ form_row(form.telf) }}</div>
+            <div>{{ form_row(form.telfInterno) }}</div>
+            <br />
+            {% include 'GeneralComunBundle:Publico:_newpassword.html.twig' with { 'titulo': 'Acceso' } %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

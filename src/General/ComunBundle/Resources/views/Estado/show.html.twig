@@ -1,0 +1,17 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block cuerpo %}
+    {% set cantTrans = entity.derivaciones|length + entity.informes|length %}
+    {% embed 'GeneralComunBundle:Public:_show.html.twig' %}
+        {% block datos %}
+            <tr><th>Nombre     </th><td>{{ entity.nombre }}     </td></tr>
+            <tr><th>Abreviatura</th><td>{{ entity.abreviatura }}</td></tr>
+            <tr><th>Tipo</th>       <td>{{ entity.tipo }}</td></tr>
+        {% endblock %}
+    
+        {% block datosTrans %}
+           <tr><th>Derivaciones</th><td>{{ entity.derivaciones|length }}</td></tr>
+           <tr><th>Informes    </th><td>{{ entity.informes|length }}</td></tr>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

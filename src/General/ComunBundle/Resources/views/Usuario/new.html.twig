@@ -1,0 +1,29 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block oJScYCss %} {{ form_stylesheet(form) }} {{ form_javascript(form) }} {% endblock %}
+
+{% block cuerpo %}
+    {% set tam = '12' %}
+    {% set cantTrans = entity.accesos|length %}
+    {% embed 'GeneralComunBundle:Public:_new.html.twig' %}
+         {% block datos %}
+         <div>{{ form_row(form.nombre) }}</div>
+         <div>{{ form_row(form.perfil) }}</div>
+         <fieldset>
+            <legend>Fechas</legend> 
+            <div class="grid_6 alpha">
+                {{ form_errors(form.ingresoEl) }}
+                {{ form_label(form.ingresoEl) }}
+                {{ form_widget(form.ingresoEl, { 'attr' : { 'maxlength' : '10', 'class': 'fch' }}) }} d/m/a
+            </div>
+            <div class="grid_5 omega">
+                {{ form_errors(form.retiroEl) }}
+                {{ form_label(form.retiroEl) }}
+                {{ form_widget(form.retiroEl, { 'attr' : { 'maxlength' : '10', 'class': 'fch' }}) }} d/m/a
+            </div><div class="clear"></div>
+        </fieldset>
+        <br />
+        {% include 'GeneralComunBundle:Publico:_newpassword.html.twig' with { 'titulo': 'Acceso' } %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

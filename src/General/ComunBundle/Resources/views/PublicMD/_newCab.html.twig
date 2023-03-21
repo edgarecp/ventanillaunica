@@ -1,0 +1,21 @@
+{% if tam|default(0) != 0 %}
+    <div class="grid_{{ tam - 1 }} prefix_{{ ((16 - tam) / 2) }}">
+{% endif %}  
+<fieldset>
+    <legend>{{ entityCab.id == null ? 'Adicionar' : 'Modificar' }} </legend>
+    <form name='fNew' action="{{ entityCab.id == null ? path( ruta ~ '_create') : path( ruta ~ '_update') }}" method="post" {{ form_enctype(formCab) }}>
+        <div>
+			<div>{{ form_errors(formCab) }}</div>
+			{% block datos %}{% endblock %}
+		</div>
+        {{ form_rest(formCab) }}
+        <center><button type="submit" class='btn'>Grabar</button>
+        {% if entityCab.id != null %}
+            <a href="{{ path( ruta ~ '_show0') }}" class='btn_b'>Cancelar</a>
+        {% endif %}
+        </center>
+    </form>
+</fieldset>
+{% if tam|default(0) != 0 %}
+</div><div class="clear"></div>
+{% endif %}

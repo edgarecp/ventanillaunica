@@ -1,0 +1,28 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block cuerpo %}
+   {% embed 'GeneralComunBundle:Public:_filtrar.html.twig' %}
+        {% block datos %}
+        <div>
+            {{ form_label(form.nombre) }}
+            {{ form_widget(form.fil_nombre) }}
+            {{ form_widget(form.nombre) }}
+        </div>
+        <div>
+            {{ form_label(form.abreviatura) }}
+            {{ form_widget(form.fil_abreviatura) }}
+            {{ form_widget(form.abreviatura) }}
+        </div>
+        <div>
+            {{ form_label(form.telf) }}
+            {{ form_widget(form.fil_telf) }}
+            {{ form_widget(form.telf) }}
+        </div>
+        <div>
+            {{ form_label(form.telfInterno) }}
+            {{ form_widget(form.fil_telfInterno) }}
+            {{ form_widget(form.telfInterno) }}
+        </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

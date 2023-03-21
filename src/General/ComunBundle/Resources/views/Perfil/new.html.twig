@@ -1,0 +1,8 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block cuerpo %}
+    {% set tam = '8' %}    
+    {% set cantTrans = entity.usuarios|length %}
+    {% embed 'GeneralComunBundle:Public:_new.html.twig' %}
+    {% endembed %}
+{% endblock %}

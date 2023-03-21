@@ -1,0 +1,19 @@
+{% embed 'GeneralComunBundle:Public:_new.html.twig' %}
+    {% block form %}
+        <form action="{{ path(ruta ~ '_create') }}" method="post" {{ form_enctype(form) }}>
+    {% endblock %}
+    {% block datos %}
+        <div class="grid_10">
+            {{ form_errors(form.detalle) }}
+            {{ form_label(form.detalle) }}
+            {{ form_widget(form.detalle, { 'attr' : { 'class': 'largo' }}) }}
+        </div>
+        <div class="grid_5">
+            {{ form_errors(form.estado) }}
+            {{ form_label(form.estado) }}
+            {{ form_widget(form.estado) }}
+        </div>
+        <div class="clear"></div>
+    {% endblock %}
+    {% block btnVolver %}<div class="grid_3"><center><a href="{{ path('docrec_serv_show', { 'id': entity.derivacion.docrec.id }) }}" class='btn_ga'>Volver</a></center></div>{% endblock %}
+{% endembed %}

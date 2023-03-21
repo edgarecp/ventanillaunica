@@ -1,0 +1,32 @@
+{% extends "GeneralComunBundle::layout.html.twig" %}
+
+{% block cuerpo %}
+    {% set ruta      = 'docrec_serv' %}
+    {% set tit       = 'Documentacion Recibida (' ~ app.session.get('tipoDocrec') ~ ')' %}
+    {% set btnNew    = 'N' %}
+    {% set btnMod    = 'N' %}
+    {% set cantTrans = entity.derivaciones|length %}
+    
+    {% embed 'GeneralComunBundle:Public:_show.html.twig' %}
+        {% block datos %}{% include "CpsFludocAdmBundle:Docrec:_show.html.twig" %}{% endblock %}
+        {% block transacciones %}
+            {% if cantTrans %}
+                <br>
+                {% include 'CpsFludocAdmBundle:Derivacion:_listado.html.twig' %}
+            {% endif %}
+        {% endblock %}
+        {% block acciones %}{% endblock %}
+    {% endembed %}
+
+    {% embed 'GeneralComunBundle:Public:_showAcc.html.twig' %}
+        {% block adicionarBtn %}
+            {% if ultimaDer.estado.abreviatura == "XRece" %}<a href="{{ path( 'derivacion_serv_recepcion') }}" class='btn_gm'>Recepcionar</a>{% endif %}
+            {% if ultimaDer.estado.abreviatura == "Recep" %}
+                <a href="{{ path( 'derivacion_serv_cons_recep') }}" class='btn_gm'>Imprimir Cons. Recepcion</a>
+                <a href="{{ path( 'informe_new', { 'cabId': ultimaDer.id }) }}" class='btn_gm'>Informe</a>
+                <a href="{{ path( 'derivacion_serv_new') }}"                    class='btn_gm'>Derivar</a>
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
+
+{% endblock %}

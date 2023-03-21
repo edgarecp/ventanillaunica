@@ -1,0 +1,10 @@
+{% extends "GeneralComunBundle::blanco.html.twig" %}
+{% block cuerpo %}
+<br />
+Revisa el estado de tu documentacion en la pagina web: www.cps.com.bo/ventanillaunica, ingresando el Codigo y el PIN
+<br /><br />
+{% include 'CpsFludocAdmBundle:Publico:_docrec.html.twig' with {'colilla': true } %}
+<br />
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+{#<script language='JavaScript'>window.print();</script>#}   
+{% endblock %}

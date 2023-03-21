@@ -1,0 +1,6 @@
+form input.codaf  { width: 4.1em; }
+form input.marmod { width: 12.0em; }
+form textarea.mini {
+    height: 50px;
+    width: 230px;
+}

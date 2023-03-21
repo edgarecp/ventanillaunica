@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es">
+    <head>
+        <title>{% block title %}{% endblock %} - Caja Petrolera de Salud</title>
+        <link href="{{ asset('bundles/generalcomun/imagenes/favicon.png') }}" rel="shortcut icon"/>        
+        <link href="{{ asset('bundles/generalcomun/css/960.css') }}"          rel="stylesheet" type="text/css"/>
+        {% block style %}
+        <link href="{{ asset('bundles/generalcomun/css/style.css') }}"        rel="stylesheet" type="text/css"/>
+        {% endblock %}
+        <link href="{{ asset('bundles/generalcomun/css/main.css') }}"         rel="stylesheet" type="text/css"/>
+        {% block jScYCss %}{% endblock %}      
+    </head>
+    <body id="{% block id '' %}">
+        <header>
+            <div class="container_16">
+                <div class="cabecera">
+                    {% block header %}HEADER{% endblock %}
+                </div>
+            </div>
+        </header>
+      
+        <div class="container_16">
+            <div class="grid_16">
+                {% block menu %}MENU{% endblock %}
+            </div>
+        </div>
+      
+        <div class="container_16">
+            <div id="cuerpo">
+                {% block body %}BODY{% endblock %}
+            </div>
+        </div>   
+      
+        <footer>
+            <div class="container_16">
+                {% block footer %}
+                <table border="0">
+                    <tr>
+                        <td width="33%" align="left">Caja Petrolera de Salud<td>
+                        <td width="34%" align="center">Diseñador : hansgc@hotmail.com<td>
+                        <td width="33%" align="right">Santa Cruz - Bolivia<td>
+                    </tr>
+                </table>
+                {% endblock %}
+            </div>
+        </footer>
+    </body>
+</html>

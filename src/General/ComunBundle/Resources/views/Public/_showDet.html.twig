@@ -1,0 +1,5 @@
+<table class='index'>
+    <thead><tr>{% block titulos %}{% endblock %}</tr></thead>
+    <tbody>{% block datos %}{% endblock %}</tbody>
+</table>
+{% block acciones %}{% include 'GeneralComunBundle:Public:_showAcc.html.twig' %}{% endblock %}

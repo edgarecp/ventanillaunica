@@ -1,0 +1,23 @@
+{% set vAccReg = accReg|default(app.session.get('accReg')|default('S')) %}
+    <table class='index'>
+        <thead><tr><th width='8%'>Id</th>
+				   {% block titulos %}{% endblock %}
+                   {% if vAccReg == "S" %}<th width='8%'>Accion</th>{% endif %}
+               </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td align='center'>{{ entityCab.id }}</td>
+                {% block datos %}
+                {% if vAccReg == "S" %}
+                <td align='center'>
+                    <a href="{{ path( ruta ~ '_edit' ) }}" class='btn_m' title='Modificar'><span class="ui-icon ui-icon-pencil"></span></a>
+					{% if cantTrans|default(0) == 0 %}
+                    <a href="#" onclick="confirmDelete('{{ path( ruta ~ '_delete', { 'cabId': entityCab.id }) }}', '{{ entityCab.id }} y su detalle');" class='btn_b' title='Borrar'><span class="ui-icon ui-icon-trash"></span></a>
+					{% endif %}
+                </td>
+                {% endif %}
+				{% endblock %}
+            </tr>
+        </tbody>
+    </table>

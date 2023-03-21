@@ -1,0 +1,28 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block oJScYCss %} {{ form_stylesheet(form) }} {{ form_javascript(form) }} {% endblock %}
+
+{% block cuerpo %}
+    {% set ruta  = 'adm_docrec' %}
+    {% set tit   = 'Documentacion Recibida' %}        
+    {% set tam = '12' %}
+    {% set accion = app.session.get('accion')|default('new') %}
+    {% if accion == 'edit' %}{% set cantTrans = entity.derivaciones|length %}{% endif %}
+
+    {% embed 'GeneralComunBundle:Public:_new.html.twig' %}
+        {% block datos %}
+        <table class='sinBorde'>
+            <tr><td width='20%'></td><td width='80%'></td></tr>           
+            <tr><td>{{ form_label(form.recepcionEl) }}</td><td>{{ form_errors(form.recepcionEl) }}{{ form_widget(form.recepcionEl) }}</td></tr>
+            <tr><td>{{ form_label(form.fechaDoc) }}</td><td>{{ form_errors(form.fechaDoc) }}{{ form_widget(form.fechaDoc, { 'attr' : { 'maxlength' : '10', 'class': 'fch' }}) }}</td></tr>
+            <tr><td>{{ form_label(form.cite) }}</td><td>{{ form_errors(form.cite) }}{{ form_widget(form.cite) }}</td></tr>
+            <tr><td>{{ form_label(form.referencia) }}</td><td>{{ form_errors(form.referencia) }}{{ form_widget(form.referencia, { 'attr' : { 'class': 'largo' }}) }}</td></tr>
+            <tr><td>{{ form_label(form.institucionRem) }}</td><td>{{ form_errors(form.institucionRem) }}{{ form_widget(form.institucionRem, { 'attr' : { 'class': 'largo' }}) }}</td></tr>
+            <tr><td>{{ form_label(form.personaRem) }}</td><td>{{ form_errors(form.personaRem) }}{{ form_widget(form.personaRem, { 'attr' : { 'class': 'mediano' }}) }}</td></tr>
+            <tr><td>{{ form_label(form.cargoRem) }}</td><td>{{ form_errors(form.cargoRem) }}{{ form_widget(form.cargoRem, { 'attr' : { 'class': 'mediano' }}) }}</td></tr>
+            <tr><td>{{ form_label(form.folio) }}</td><td>{{ form_errors(form.folio) }}{{ form_widget(form.folio, { 'attr' : { 'class': 'mini' }}) }}</td></tr>
+            <tr><td>{{ form_label(form.archivo) }}</td><td>{{ form_errors(form.archivo) }}{{ form_widget(form.archivo) }}</td></tr>
+	    </table>
+	    {% endblock %}
+    {% endembed %}
+{% endblock %}

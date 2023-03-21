@@ -1,0 +1,16 @@
+{% extends 'GeneralComunBundle::layout.html.twig' %} 
+
+{% block cuerpo %}
+    {% set btnFil = 'N' %}
+    {% embed 'GeneralComunBundle:Public:_listado.html.twig' %}
+        {% block titulo %}
+            {# Max 84% #}        
+            <th width="84%">{% set fld = 'nombre' %}{{ knp_pagination_sortable(paginacion, fld|capitalize, 't.' ~ fld) }}</th>
+        {% endblock %}      
+        {% block detalle %}
+             <td>{{ entity.nombre }}</td>
+             {% set cantTrans = entity.usuarios|length %}             
+             {{ parent() }}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

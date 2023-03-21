@@ -1,0 +1,21 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block cuerpo %}
+    {% set ruta  = 'informe' %}
+    
+    {% embed 'GeneralComunBundle:Public:_show.html.twig' %}
+        {% block titulo %}Documentacion Recibida{% endblock %}
+        {% block datos %}
+            {% include "CpsFludocAdmBundle:Docrec:_show.html.twig" with { 'entity': entity.derivacion.docrec } %}
+        {% endblock %}
+        {% block transacciones %}
+            {% if entity.derivacion.docrec.derivaciones|length > 0 %}
+                <br>
+                {% include 'CpsFludocAdmBundle:Derivacion:_listado.html.twig' with { 'entity': entity.derivacion.docrec } %}
+            {% endif %}
+            {% include 'CpsFludocServicioBundle:Informe:_new.html.twig' %}
+        {% endblock %}
+        {% block acciones %}{% endblock %}
+    {% endembed %}
+
+{% endblock %}

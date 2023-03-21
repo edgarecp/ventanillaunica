@@ -1,0 +1,21 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block cuerpo %}
+    {% embed 'GeneralComunBundle:Public:_listado.html.twig' %}
+        {% block titulo %}
+            {# Max 84% #}
+            <th width='20%'>{% set fld = 'usuario.nombre' %}{{ knp_pagination_sortable(paginacion, 'Usuario', 'u.nombre') }}</th>
+            <th width='10%'>{% set fld = 'desdeEl' %}       {{ knp_pagination_sortable(paginacion, fld|capitalize, 't.' ~ fld) }}</th>
+            <th width='10%'>{% set fld = 'hastaEl' %}       {{ knp_pagination_sortable(paginacion, fld|capitalize, 't.' ~ fld) }}</th>
+            <th width='44%'>{% set fld = 'descripcion' %}   {{ knp_pagination_sortable(paginacion, fld|capitalize, 't.' ~ fld) }}</th>
+        {% endblock %}      
+        
+        {% block detalle %}
+            <td align='center'>{{ entity.usuario }}</td>
+            <td class='fch'>{% if entity.desdeEl %}{{ entity.desdeEl|date('d/m/Y') }}{% endif%}</td>
+            <td class='fch'>{% if entity.hastaEl %}{{ entity.hastaEl|date('d/m/Y') }}{% endif%}</td>
+            <td>{{ entity.descripcion }}</td>
+            {{ parent() }}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

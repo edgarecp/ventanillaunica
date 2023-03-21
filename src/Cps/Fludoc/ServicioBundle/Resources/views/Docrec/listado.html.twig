@@ -1,0 +1,33 @@
+{% extends 'GeneralComunBundle::layout.html.twig' %} 
+
+{% block cuerpo %}
+    {% set btnNew  = 'N' %}
+    {% set btnMod  = 'N' %}
+    {% set btnDel  = 'N' %}
+    
+    {% embed 'GeneralComunBundle:Public:_listado.html.twig' %}
+        {% block titulo %}
+            {# Max 92% #}
+            <th width= "8%">{% set fld = 'recepcionEl' %}{{ knp_pagination_sortable(paginacion, fld|capitalize, 'z.' ~ fld) }}</th>
+            <th width="10%">{% set fld = 'cite' %}       {{ knp_pagination_sortable(paginacion, fld|capitalize, 'z.' ~ fld) }}</th>
+            <th width="46%">{% set fld = 'referencia' %} {{ knp_pagination_sortable(paginacion, fld|capitalize, 'z.' ~ fld) }}</th>
+            <th width="18%">{% set fld = 'personaRem' %} {{ knp_pagination_sortable(paginacion, 'Remite', 'z.' ~ fld) }}</th>
+            <th width= "5%">{% set fld = 'servicio.abreviatura' %}{{ knp_pagination_sortable(paginacion, 'Servicio', 's.abreviatura') }}</th>
+            <th width= "5%">{% set fld = 'estado.abreviatura' %}  {{ knp_pagination_sortable(paginacion, 'Estado', 'e.abreviatura') }}</th>
+        {% endblock %}
+        {% block accRegTit %}<th width='3%'>Acc.</th>{% endblock %}
+        {% block detalle %}
+            <td align='center'>{% if entity.recepcionEl %}{{ entity.recepcionEl|date('Y-m-d') }}{% endif %}</td>
+            <td>{{ entity.cite }}</td>
+            <td>{{ entity.referencia }}</td>
+            <td>{{ entity.personaRem }}</td>
+            <td align='center'>{% if entity.servicioActual %}{{ entity.servicioActual.abreviatura }}{% endif %}</td>
+            <td align='center'>{% if entity.estadoActual %}{{ entity.estadoActual.abreviatura }}{% endif %}</td>
+            {% block accRegDet %}
+                <td align='center'>
+                    <a href="{{ path(rut ~ '_show', { 'id': entity.id }) }}" class='btn_d'><span class="ui-icon ui-icon-zoomin"></span></a>
+                </td>
+            {% endblock %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

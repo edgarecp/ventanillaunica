@@ -1,0 +1,22 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block oJScYCss %} {{ form_stylesheet(form) }} {{ form_javascript(form) }} {% endblock %}
+
+{% block cuerpo %}
+   {% set tam = '10' %}
+    {% embed 'GeneralComunBundle:Public:_new.html.twig' %}
+        {% block datos %}
+        <table class='sinBorde'>
+            <tr><td>
+            {{ form_errors(form.desdeEl) }}
+	        {{ form_label(form.desdeEl) }}
+            {{ form_widget(form.desdeEl, { 'attr' : { 'maxlength' : '10', 'class': 'fch' }}) }} dd/mm/aaaa	         
+            </td><td>
+            {{ form_errors(form.hastaEl) }}
+            {{ form_label(form.hastaEl) }}
+            {{ form_widget(form.hastaEl, { 'attr' : { 'maxlength' : '10', 'class': 'fch' }}) }} dd/mm/aaaa	         
+            </td></tr>
+        </table>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

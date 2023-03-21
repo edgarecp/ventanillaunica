@@ -1,0 +1,19 @@
+{% extends 'GeneralComunBundle::layout.html.twig' %} 
+
+{% block cuerpo %}
+    {% embed 'GeneralComunBundle:Public:_listado.html.twig' %}
+        {% block titulo %}
+            {# Max 84% #}
+            <th width='20%'>{% set fld = 'nombre' %}     {{ knp_pagination_sortable(paginacion, fld|capitalize, 't.' ~ fld) }}</th>
+            <th width='10%'>{% set fld = 'abreviatura' %}{{ knp_pagination_sortable(paginacion, fld|capitalize, 't.' ~ fld) }}</th>
+            <th width='54%'>{% set fld = 'direccion' %}  {{ knp_pagination_sortable(paginacion, fld|capitalize, 't.' ~ fld) }}</th>
+        {% endblock %}
+
+        {% block detalle %}
+            <td>{{ entity.nombre }}</td>
+            <td>{{ entity.abreviatura }}</td>
+            <td>{{ entity.direccion }}</td>
+            {{ parent() }}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

@@ -1,0 +1,25 @@
+cps_fludoc_servicio:
+    resource: "@CpsFludocServicioBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+cps_fludoc_adm:
+    resource: "@CpsFludocAdmBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+GeneralComunBundle:
+    resource: "@GeneralComunBundle/Controller/"
+    type:     annotation
+    prefix:   /
+    
+GeneralEmpresaBundle:
+    resource: "@GeneralEmpresaBundle/Controller/"
+    type:     annotation
+    prefix:   /
+      
+genemu_upload:
+    resource: "@GenemuFormBundle/Resources/config/routing/upload.xml"
+
+genemu_image:
+    resource: "@GenemuFormBundle/Resources/config/routing/image.xml"

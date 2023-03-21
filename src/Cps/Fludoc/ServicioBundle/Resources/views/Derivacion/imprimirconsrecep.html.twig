@@ -1,0 +1,32 @@
+{% extends "GeneralComunBundle::blanco.html.twig" %}
+{% block cuerpo %}
+<br /><br />
+<table border='1' width='100%'>
+   <tr>
+      <td width='10%'><b>Codigo</b></td>
+      <td width='40%'>{{ entityDR.id }}</td>
+      <td width='10%'><b>Cite</b></td>
+      <td width='40%'>{{ entityDR.Cite }}</td>
+   </tr><tr>
+      <td><b>Referencia</b></td>
+      <td colspan='3'>{{ entityDR.referencia }}</td>
+   </tr><tr>
+      <td><b>Remite</b></td>
+      <td>{{ entityDR.remite }}</td>
+      <td><b>Folio</b></td>
+      <td>{{ entityDR.folio }} hoja(s)</td>
+   </tr><tr>
+      <td><b>Recepcion</b></td>
+      <td>{{ entityDe.servicio }}
+          <br />
+          {{ entityDe.recepcionEl|date('d/m/Y H:i') }}
+          <br />
+      </td>
+      <td align='center'><b>Firma<br />y<br />Nombre</b></td>
+      <td>&nbsp;</td>
+   </tr>
+</table>
+<br />
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+{#<script language='JavaScript'>window.print();</script>#}
+{% endblock %}

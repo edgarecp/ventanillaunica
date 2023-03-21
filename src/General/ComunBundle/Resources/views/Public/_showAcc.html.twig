@@ -1,0 +1,27 @@
+{% set ord       = app.session.get('ord') %}
+{% set orddir    = app.session.get('orddir') %}
+{% set vBtnNew   = btnNew|default('S') %}
+{% set vBtnMod   = btnMod|default('S') %}
+{% set vBtnImp   = btnImp|default('N') %}
+{% set vBtnVol   = btnVol|default('S') %}
+{% set vBtnDel   = btnDel|default('S') %}
+{% set cantTrans = cantTrans|default(0) %}
+{% set rut       = app.session.get('rut') %}
+
+<div class="grid_3">{% if vBtnVol == 'S' %}<center><a href="{{ path(rut ~ '_listado', { 'ord': ord, 'orddir': orddir }) }}" class='btn_ga'>Volver al listado</a></center>{% endif %}&nbsp;</div>
+<div class="grid_11">
+    <center>
+    {% if vBtnNew == 'S' %}<a href="{{ path(rut ~ '_new') }}" class='btn'>Crear Nuevo</a>{% endif %}
+    {% if vBtnMod == 'S' %}<a href="{{ path(rut ~ '_edit', { 'id': entity.id }) }}" class='btn_gm'>Modificar</a>{% endif %}
+    {% if vBtnImp == 'S' %}<a href="{{ path(rut ~ '_imprimir', { 'id': entity.id }) }}" class='btnGPrn'>Imprimir</a>{% endif %}
+    {% block adicionarBtn %}{% endblock %}
+    </center>
+</div>
+{% if cantTrans == 0 %}
+<div class="grid_2">
+    <center>
+	{% if vBtnDel == 'S' %}<a href="#" onclick="confirmDelete('{{ path(rut ~ '_delete', { 'id': entity.id }) }}', {{ entity.id }} );" class='btn_gb'>Borrar</a>{% endif %}
+	</center>
+</div>
+{% endif %}
+<div class='clear'></div>

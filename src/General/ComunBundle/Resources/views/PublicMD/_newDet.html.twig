@@ -1,0 +1,27 @@
+<center>
+<fieldset>
+    <legend>{{ entityDet.id == null ? "Adicionar" : "Modificar (Fila:" ~ app.session.get('fila')|default('Sin valor') ~ ")" }}</legend>
+    {% block form %}<form name='New' action="{{ entityDet.id == null ? path(ruta ~ 'det_create' ) : path(ruta ~ 'det_update') }}" method="post" {{ form_enctype(formDet) }}>{% endblock %}
+        <table width="100%">
+            <thead><tr>{% block titulos %}{% endblock %}
+                        {% block titAcc %}<th width='8%'>Acciones</th>{% endblock %}
+            </tr></thead>
+            <tbody>
+                <tr>
+                    {% block datos %}{% endblock %}
+                    <td align='center' valign='top'>
+                        {% block btnGra %}
+                        <button type="submit" class="chico"><span class="ui-icon ui-icon-circle-plus"></span></button>
+                        {% ui_tooltip for=".chico" label="Grabar" %}
+                        {% endblock %}
+                        <a href="{{ path(ruta ~ '_show0') }}" title='Cancelar' class="btn_b"><span class="ui-icon ui-icon-circle-close"></span></a>
+                        {% ui_tooltip for=".btn_b" label="Cancelar" %}
+                    </td>
+                    
+                </tr>
+            </tbody>    
+        </table>
+        {{ form_rest(formDet) }}
+    </form>
+</fieldset>
+</center>

@@ -1,0 +1,34 @@
+{% set ord    = app.session.get('ord') %}
+{% set orddir = app.session.get('orddir') %}
+{% set vtam   = tam|default(0) %}
+{% set rut    = app.session.get('rut') %}
+{% set tit    = app.session.get('tit')|default(rut|capitalize) %}
+
+{% if vtam == 0 %}
+    <div class="grid_16">
+{% else %}
+    <div class="grid_{{ vtam }} prefix_{{ (16 - vtam) / 2 }}">
+{% endif %}  
+<br />
+<fieldset>
+    <legend>{{ entity.id == null ? 'Nuevo' : 'Modificar' }} ({% block titulo %}{{ tit }}{% endblock %})</legend>
+{% block form %}
+	<form action="{{ entity.id == null ? path(rut ~ '_create') : path(rut ~ '_update') }}" method="POST" {{ form_enctype(form) }}>
+{% endblock %}
+		<div>
+			<div class='error'>{{ form_errors(form) }}</div>
+			{% block datos %}{% endblock %}
+		</div>
+        {{ form_rest(form) }}
+		<center><button type="submit" class='btn'>Grabar</button></center>
+	</form>
+</fieldset>
+</div><div class="clear"></div>
+{% block btnVolver %}<div class="grid_3"><a href="{{ path(rut ~ '_listado', { 'ord': ord, 'orddir': orddir }) }}" class='btn_ga'>Volver al listado</a></div>{% endblock %}
+{% if entity.id != null and cantTrans|default(0) == 0 %}
+    <div class="grid_3 prefix_10">
+        <center><a href="#" onclick="confirmDelete('{{ path(rut ~ '_delete', { 'id': entity.id }) }}', {{ entity.id }} );" class='btn_gb'>BORRAR</a></center>
+    </div>
+{% endif %}
+<div class="clear"></div>
+{#<script type="text/javascript">$(function(){ $("form:not(.filter) :input:visible:enabled:first").focus(); });</script>#}

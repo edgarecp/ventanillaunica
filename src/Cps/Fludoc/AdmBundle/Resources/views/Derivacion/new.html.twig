@@ -1,0 +1,24 @@
+{% extends "GeneralComunBundle::layout.html.twig" %}
+
+{% block oJScYCss %}
+    <link href="{{ asset('bundles/generalcomun/select2/select2.css') }}" rel="stylesheet" type="text/css"/>  
+    <script type="text/javascript" src="{{ asset('bundles/generalcomun/select2/select2.min.js') }}"></script>
+{{ form_stylesheet(form) }}{{ form_javascript(form) }}{% endblock %}
+
+{% block cuerpo %}
+    {% set ruta   = 'adm_derivacion' %}
+    {% set tit    = 'Documentacion Recibida' %}
+
+    {% embed 'GeneralComunBundle:Public:_show.html.twig' %}
+        {% block datos %}{% include "CpsFludocAdmBundle:Docrec:_show.html.twig" %}{% endblock %}
+        {% block transacciones %}
+            {% if entity.derivaciones|length > 0 %}
+                <br>
+                {% include 'CpsFludocAdmBundle:Derivacion:_listado.html.twig' %}
+            {% endif %}
+            <br>            
+            {% include 'CpsFludocAdmBundle:Derivacion:_new.html.twig' %}
+        {% endblock %}
+        {% block acciones %}{% endblock %}
+    {% endembed %}
+{% endblock %}

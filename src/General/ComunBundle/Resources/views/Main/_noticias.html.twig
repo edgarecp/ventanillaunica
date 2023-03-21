@@ -1,0 +1,14 @@
+    <br />        
+    <fieldset>
+        <legend>Noticias</legend>
+        {% if entitiesN == null %}
+            <center><h1>No existen Noticias...</h1></center>
+        {% else %}
+        <div id="accordion">
+            {% for entity in entitiesN %}
+                <h2>Fecha:&nbsp;{{ entity.creadoEl|date('d/m/Y') }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Autor:&nbsp;{{ entity.usuario }}</h2>
+                <div>{{ entity.descripcion }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </fieldset>

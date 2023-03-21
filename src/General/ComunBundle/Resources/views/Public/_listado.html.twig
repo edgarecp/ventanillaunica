@@ -1,0 +1,63 @@
+{% set fil = app.session.get('fil') %}
+{% set vAccReg = accReg|default('S') %}
+{% set vBtnNew = btnNew|default('S') %}
+{% set vBtnMos = btnMos|default('S') %}
+{% set vBtnMod = btnMod|default('S') %}
+{% set vBtnDel = btnDel|default('S') %}
+{% set vBtnFil = btnFil|default('S') %}
+{% set vCambiarCxp = cambiarCxp|default('S') %}
+{% set rut = app.session.get('rut') %}
+{% set tit = app.session.get('tit')|default(rut|capitalize) %}
+
+<div class="grid_16">
+    <br />
+    <fieldset>
+        <legend>LISTADO ({{ tit }}): Total:{{ cantReg }}{% if fil != ' ' %} - Filtro:{{ paginacion.totalItemCount }} {% endif %}</legend>
+{% if cantReg > 0 %}
+		{% if paginacion.totalItemCount == 0 and fil != ' ' %}
+            <br /><br />
+            <center><h2>No existen Registros con ese Filtro.....</h2>
+            <a href="{{ path(rut ~ '_grabarSesion', { 'var':'fil', 'val':' ' }) }}" class="btn">Quitar Filtro</a>
+            </center>
+        {% else %}
+			{% include 'GeneralComunBundle:Public:_listadoOpPag.html.twig' %}
+			<table class='index'>
+				<thead><tr><th width= "5%">{{ knp_pagination_sortable(paginacion, 'Id', 'z.id') }}</th>
+						   {% block titulo %}{% endblock %}
+						   {% if vAccReg == 'S' %}{% block accRegTit %}<th width='11%'>Acciones</th>{% endblock %}{% endif %}
+					   </tr>
+				</thead>
+				<tbody>
+				  {% for entity in paginacion.items %}
+					<tr><td align='center'>{{ entity.id }}</td>
+						{% block detalle %}
+						{% if vAccReg == 'S' %}
+						{% block accRegDet %}
+						<td align='center'>
+                            {% if vBtnMos == 'S' %}<a href="{{ path(rut ~ '_show', { 'id': entity.id }) }}" class='btn_d'><span class="ui-icon ui-icon-zoomin"></span></a>{% endif %}
+                            {% if vBtnMod == 'S' %}<a href="{{ path(rut ~ '_edit', { 'id': entity.id }) }}" class='btn_m'><span class="ui-icon ui-icon-pencil"></span></a>{% endif %}
+                            {% if cantTrans|default(0) == 0 and vBtnDel == 'S' %}
+                            <a href="#" onclick="confirmDelete('{{ path(rut ~ '_delete', { 'id': entity.id }) }}', {{ entity.id }} );" class='btn_b'><span class="ui-icon ui-icon-trash"></span></a>
+                            {% endif %}
+                        </td>
+                        {% endblock %}
+                        {% endif %}
+                        {% endblock %}
+                    </tr>
+                  {% endfor %}
+                  {% ui_tooltip for=".btn_d" label="Detalle" %}{% ui_tooltip for=".btn_m" label="Modificar" %}{% ui_tooltip for=".btn_b" label="Borrar" %}
+                </tbody>
+            </table>
+            {% if paginacion.itemNumberPerPage >= 20 %}
+                {% set salreg = paginacion.totalItemCount - ((paginacion.currentPageNumber - 1) * paginacion.itemNumberPerPage) %}
+                {% if salreg > 20 %}{% include 'GeneralComunBundle:Public:_listadoOpPag.html.twig' %}{% endif %}
+            {% endif %}
+        {% endif %}
+    </fieldset>
+{% else %}
+    <br /><br />
+    <center><h2>No existe ({{ tit }})</h2>
+    {% if vBtnNew == 'S' %}<a href="{{ path(rut ~ '_new') }}" class='btn'>Crear Nuevo</a></center>{% endif %}
+    </center>
+{% endif %}
+</div><div class="clear"></div>

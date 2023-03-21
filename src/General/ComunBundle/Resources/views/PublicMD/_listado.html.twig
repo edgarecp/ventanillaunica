@@ -1,0 +1,58 @@
+{% set fil         = app.session.get('fil') %}
+{% set vAccReg     = accReg|default('S') %}
+{% set vBtnNew     = btnNew|default('S') %}
+{% set vBtnMos     = btnMos|default('S') %}
+{% set vBtnMod     = btnMod|default('S') %}
+{% set vBtnDel     = btnDel|default('S') %}
+{% set vBtnFil     = btnFil|default('S') %}
+{% set vCambiarCxp = cambiarCxp|default('S') %}
+{% set vTit        = tit|default(ruta|capitalize) %}
+{% set vCantTrans  = cantTrans|default(0) %}
+{% set vCantReg    = cantReg|default(0) %}
+
+<div class="grid_16">
+<br />
+{% if cantReg > 0 %}
+    <fieldset>
+        <legend>LISTADO ({{ vTit }}): Total:{{ cantReg }}{% if fil != ' ' %} - Filtro:{{ paginacion.totalItemCount }} {% endif %}</legend>
+        {% include 'GeneralComunBundle:PublicMD:_listadoOpPag.html.twig' %}
+        <table class='index'>
+            <thead><tr><th width= "5%">{{ knp_pagination_sortable(paginacion, 'Id', 't.id') }}</th>
+					   {% block titulo %}{% endblock %}
+                       <th width='5%'>Det.</th>
+                       {% if vAccReg == 'S' %}{% block accRegTit %}<th width='10%'>Acciones</th>{% endblock %}{% endif %}
+                   </tr>
+            </thead>
+            <tbody>
+              {% for entity in paginacion.items %}       
+                <tr><td align='center'>{{ entity.id }}</td>
+                    {% block detalle %}
+                    <td align="center">{{ entity.detalle|length }}</td>
+                    {% if vAccReg == 'S' %}
+                    {% block accRegDet %}
+                    <td align='center'>
+                        {% if vBtnMos == 'S' %}<a href="{{ path( ruta ~ '_show0',  { 'accReg': 'N', 'cabId': entity.id }) }}" class='btn_d' title='Detalle'><span class="ui-icon ui-icon-zoomin"></span></a>{% endif %}
+                        {% if vBtnMod == 'S' %}<a href="{{ path( ruta ~ '_show0', { 'accReg': 'S', 'cabId': entity.id }) }}" class='btn_m' title='Modificar'><span class="ui-icon ui-icon-pencil"></span></a>{% endif %}
+						{% if cantTrans|default(0) == 0 and vBtnDel == 'S' %}
+                        <a href="#" onclick="confirmDelete('{{ path(ruta ~ '_delete', { 'cabId': entity.id }) }}', {{ entity.id }} );" class='btn_b' title='Borrar'><span class="ui-icon ui-icon-trash"></span></a>
+						{% endif %}
+                    </td>
+                    {% endblock %}
+                    {% endif %}
+					{% endblock %}
+                </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+        {% if paginacion.itemNumberPerPage >= 20 %}
+            {% set salreg = paginacion.totalItemCount - ((paginacion.currentPageNumber - 1) * paginacion.itemNumberPerPage) %}
+            {% if salreg > 20 %}{% include 'GeneralComunBundle:PublicMD:_listadoOpPag.html.twig' %}{% endif %}
+        {% endif %}  
+    </fieldset>
+{% else %}
+   <br /><br />
+   <center><h2>NO EXISTEN ({{ vTit }})</h2>
+   {% if vBtnNew == 'S' %}<a href="{{ path(ruta ~ '_new') }}" class='btn'>Crear Nuevo</a></center>{% endif %}
+   </center>
+{% endif %}
+</div><div class="clear"></div>

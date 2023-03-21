@@ -1,0 +1,84 @@
+#cabecera{
+    margin:0;
+    padding:0;
+    min-height:150px;
+    background-color:#00ff00;
+}
+
+#cuerpo{
+    margin:0;
+    padding:0;
+    min-height:650px;
+    background-color:#BDBDBD;
+}
+
+#cabDer img{
+    float: right;
+    margin:0;
+}
+
+#pieDer{
+	text-align: right;
+}
+
+#pieCen{
+	text-align: center;	
+}
+
+#tituloReporte{
+	float:left;
+	width:800px;
+	height:65px;
+}
+
+#tituloPag{
+	float:left;
+	width:815px;
+	height:65px;
+}
+
+#subTitPag{
+	float:left;
+	width:782px;
+	height:22px;
+}
+
+#propiedades{
+	float:left;
+	width:100px;
+	height:50px;
+}
+
+#titulo{
+  font-weight: bold;
+  font-size: 25px;
+  text-align: center;
+  letter-spacing:4px;
+  background-color:#00ff00;
+}
+
+#subTit{
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing:2px;
+  background-color:#00ff00;
+}
+
+#mensajeError{
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing:4px;
+  color: #FF0000;
+}
+
+div.contenido{
+   padding:1em;  
+}
+
+div.nota{
+   margin:0;
+   padding:0;
+   font-size:.8em;
+}

@@ -1,0 +1,30 @@
+{% set ord         = app.session.get('ord') %}
+{% set orddir      = app.session.get('orddir') %}
+{% set vBtnVol     = btnVol|default('S') %}
+{% set vTitGen     = titGen|default('Sin titulo') %}
+{% set vFil        = app.session.get('fil')|default(" ") %}
+{% set vCantRegDet = cantRegDet|default(0) %}
+
+<div class="grid_16">
+<br />
+<fieldset>
+    <legend>{{ vTitGen }}</legend>
+    <fieldset>
+        <legend>Cabecera</legend>
+        {% if entityCab.id != null %}        
+            {% embed dir ~ "/Cabecera:_show.html.twig" %}{% endembed %}
+        {% endif %}        
+        {% embed dir ~ "/Cabecera:_new.html.twig" %}{% endembed %}
+    </fieldset>    
+    <br />
+    {% if entityCab.id != null %}
+    <fieldset>
+        <legend>Detalle: Total:{{ vCantRegDet }}{% if vFil != ' ' %} - Filtro:{{ paginacion.totalItemCount }} {% endif %}</legend>        
+        {% embed dir ~ "/Detalle:_show.html.twig" %}{% endembed %}
+    </fieldset>            
+    {% endif %}
+</fieldset>
+{% if vBtnVol == 'S' %}
+<a href="{{ path( ruta ~ '_listado', { 'ord': ord, 'orddir': orddir }) }}" class='btn_ga'>Volver al listado</a>
+{% endif %}
+</div><div class="clear"></div>

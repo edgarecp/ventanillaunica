@@ -1,0 +1,22 @@
+{% extends 'GeneralComunBundle::layout.html.twig' %}
+
+{% block cuerpo %}
+    {% set accReg = 'N' %}
+    {% set btnNew = 'N' %}
+    {% embed 'GeneralComunBundle:Public:_listado.html.twig' %}
+        {% block titulo %}
+            {# Max 84% #}
+            <th width='44%'>{% set fld = 'nombre' %}     {{ knp_pagination_sortable(paginacion, fld|capitalize, 'z.' ~ fld) }}</th>
+            <th width='20%'>{% set fld = 'abreviatura' %}{{ knp_pagination_sortable(paginacion, fld|capitalize, 'z.' ~ fld) }}</th>
+            <th width='10%'>{% set fld = 'telf' %}       {{ knp_pagination_sortable(paginacion, fld|capitalize, 'z.' ~ fld) }}</th>
+            <th width='10%'>{% set fld = 'telfInterno' %}{{ knp_pagination_sortable(paginacion, fld|capitalize, 'z.' ~ fld) }}</th>
+        {% endblock %}
+
+        {% block detalle %}
+            <td>{{ entity.nombre }}</td>
+            <td>{{ entity.abreviatura }}</td>
+            <td align='center'>{{ entity.telf }}</td>
+            <td align='center'>{{ entity.telfInterno }}</td>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

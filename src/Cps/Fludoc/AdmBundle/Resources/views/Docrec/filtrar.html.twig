@@ -1,0 +1,65 @@
+{% extends "GeneralComunBundle::layout.html.twig" %}
+ 
+{% block cuerpo %}
+    {% set ruta  = vRuta|default('adm_docrec') %}
+    {% set tit   = 'Documentacion Recibida' %}        
+    {% embed 'GeneralComunBundle:Public:_filtrar.html.twig' %}
+        {% block datos %}
+            <div>
+            {{ form_label(form.id) }}
+            {{ form_widget(form.fil_id) }}
+            {{ form_widget(form.id) }}
+            </div>
+            <div>
+            {{ form_label(form.recepcionEl) }}
+            {{ form_widget(form.fil_recepcionEl) }}
+            {{ form_widget(form.recepcionEl) }}
+            </div>
+            <div>
+            {{ form_label(form.fechaDoc) }}
+            {{ form_widget(form.fil_fechaDoc) }}
+            {{ form_widget(form.fechaDoc) }}
+            </div>
+            <div>
+            {{ form_label(form.cite) }}
+            {{ form_widget(form.fil_cite) }}
+            {{ form_widget(form.cite) }}
+            </div>
+            <div>
+            {{ form_label(form.referencia) }}
+            {{ form_widget(form.fil_referencia) }}
+            {{ form_widget(form.referencia) }}
+            </div>
+            <div>
+            {{ form_label(form.institucionRem) }}
+            {{ form_widget(form.fil_institucionRem) }}
+            {{ form_widget(form.institucionRem) }}
+            </div>
+            <div>
+            {{ form_label(form.personaRem) }}
+            {{ form_widget(form.fil_personaRem) }}
+            {{ form_widget(form.personaRem) }}
+            </div>
+            <div>
+            {{ form_label(form.cargoRem) }}
+            {{ form_widget(form.fil_cargoRem) }}
+            {{ form_widget(form.cargoRem) }}
+            </div>
+            <div>
+            {{ form_label(form.folio) }}
+            {{ form_widget(form.fil_folio) }}
+            {{ form_widget(form.folio) }}
+            </div>
+            <div>
+            {{ form_label(form.servicioActual) }}
+            {{ form_widget(form.fil_servicioActual) }}
+            {{ form_widget(form.servicioActual) }}
+            </div>
+            <div>
+            {{ form_label(form.estadoActual) }}
+            {{ form_widget(form.fil_estadoActual) }}
+            {{ form_widget(form.estadoActual) }}
+            </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

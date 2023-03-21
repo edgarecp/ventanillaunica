@@ -1,0 +1,15 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: mysql42.local
+    database_port: null
+    database_name: fluDoc
+    database_user: root
+    #database_password: desarrollo
+    database_password: produccion
+    mailer_transport: smtp
+    mailer_host: localhost
+    mailer_user: null
+    mailer_password: null
+    locale: es
+    secret: ThisTokenIsNotSoSecretChangeIt

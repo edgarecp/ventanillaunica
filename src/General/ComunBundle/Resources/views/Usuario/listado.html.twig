@@ -1,0 +1,23 @@
+{% extends 'GeneralComunBundle::layout.html.twig' %} 
+
+{% block cuerpo %}
+    {% embed 'GeneralComunBundle:Public:_listado.html.twig' %}
+        {% block titulo %}
+            {# Max 84% #}
+            <th width='39%'>{% set fld = 'nombre' %}       {{ knp_pagination_sortable(paginacion, fld|capitalize, 't.' ~ fld) }}</th>
+            <th width='10%'>{% set fld = 'perfil.nombre' %}{{ knp_pagination_sortable(paginacion, 'Perfil', 'p.nombre') }}</th>
+            <th width='15%'>{% set fld = 'login' %}        {{ knp_pagination_sortable(paginacion, fld|capitalize, 't.' ~ fld) }}</th>
+            <th width='10%'>{% set fld = 'ingresoEl' %}    {{ knp_pagination_sortable(paginacion, fld|capitalize, 't.' ~ fld) }}</th>
+            <th width='10%'>{% set fld = 'retiroEl' %}     {{ knp_pagination_sortable(paginacion, fld|capitalize, 't.' ~ fld) }}</th>
+        {% endblock %}      
+        {% block detalle %}
+            <td>{{ entity.nombre }}</td>
+            <td>{{ entity.perfil }}</td>            
+            <td>{{ entity.login }}</td>
+            <td class='fch'>{{ entity.ingresoEl|date('d/m/Y') }}</td>             
+            <td class='fch'>{% if entity.retiroEl %}{{ entity.retiroEl|date('d/m/Y') }}{% endif%}</td>
+            {% set cantTrans = entity.accesos|length %}
+            {{ parent() }}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

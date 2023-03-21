@@ -1,0 +1,43 @@
+{% set vAccReg     = accReg|default(app.session.get('accReg')|default('S')) %} 
+{% set vTit        = tit|default(ruta|capitalize) %}
+{% set ruta        = ruta ~ "det" %}
+
+{% if entitiesDet|length > 0 %}
+    {% if vAccReg == 'S' %}<center><a href="{{ path( ruta ~ '_new') }}" class='btn'>Nuevo</a></center>{% endif %}
+    <table class='index'>
+        <thead><tr>
+                    <th width= '5%'>Fila</th>
+                    {% block titulo %}{% endblock %}
+                    {% if vAccReg == 'S' %}{% block accRegTit %}<th width='8%'>Accion</th>{% endblock %}{% endif %}
+               </tr>
+        </thead>
+        <tbody>
+            {% set fila = 0 %}
+            {% for entity in entitiesDet %}
+                {% set fila = fila + 1 %}
+                <tr>
+                    <td align='center'>{{ fila }}</td>
+                    {% block detalle %}
+                    {% if vAccReg == 'S' %}
+                    {% block accRegDet %}
+                    <td align='center'>
+                        {#<a href="{{ path(ruta ~ '_show', { 'id': entity.id }) }}" class='btn_d'><span class="ui-icon ui-icon-zoomin"></span></a>#}
+                        <a href="{{ path( ruta ~ '_edit', { 'detId': entity.id, 'fila': fila }) }}" class='btn_m'><span class="ui-icon ui-icon-pencil"></span></a>
+						{% if cantTrans|default(0) == 0 %}
+                        <a href="#" onclick="confirmDelete('{{ path( ruta ~ '_delete', { 'detId': entity.id }) }}', 'Detalle fila:{{ fila }}');" class='btn_b' ><span class="ui-icon ui-icon-trash"></span></a>
+						{% endif %}
+                    </td>
+                    {% endblock %}
+                    {% endif %}
+					{% endblock %}
+                </tr>
+            {% endfor %}
+            {% ui_tooltip for=".btn_d" label="Detalle" %}{% ui_tooltip for=".btn_m" label="Modificar" %}{% ui_tooltip for=".btn_b" label="Borrar" %}
+        </tbody>
+    </table>
+    {% if entitiesDet|length >= 20 %}{% if vAccReg == 'S' %}<center><a href="{{ path( ruta ~ '_new') }}" class='btn'>Nuevo</a></center>{% endif %}{% endif %}
+{% else %}
+    <center><h2>No Existe Detalle</h2>
+    {% if vAccReg == 'S' %}<a href="{{ path( ruta ~ '_new') }}" class='btn'>Adicionar</a>{% endif %}
+    </center>
+{% endif %}

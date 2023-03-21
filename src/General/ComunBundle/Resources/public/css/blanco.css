@@ -1,0 +1,11 @@
+table.reporte {
+   width: 100%;
+   border: 1;
+   margin: 0;
+   padding: 0;
+}
+
+table.reporte td {
+   margin: 0;
+   padding: 0;
+}

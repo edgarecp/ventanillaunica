@@ -1,0 +1,21 @@
+{% extends 'GeneralComunBundle::layout.html.twig' %} 
+
+{% block oJScYCss %} {{ form_stylesheet(form) }} {{ form_javascript(form) }} {% endblock %}
+
+{% block cuerpo %}
+   {% set tam = '8' %}
+    {% embed 'GeneralComunBundle:Public:_new.html.twig' %}
+        {% block datos %}
+        <div>
+          {{ form_errors(form.nombre) }}
+          {{ form_label(form.nombre) }}
+          {{ form_widget(form.nombre) }}
+        </div>
+        <div>
+          {{ form_errors(form.fecha) }}
+          {{ form_label(form.fecha) }}
+          {{ form_widget(form.fecha, { 'attr' : { 'maxlength' : '10', 'class': 'fch' }}) }} dd/mm/aaaa
+        </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

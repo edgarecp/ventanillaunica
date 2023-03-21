@@ -1,0 +1,21 @@
+ {% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block id 'Ambiente' %}
+{% block cuerpo %}
+    {% set cantTrans = entity.accesos|length %}
+    {% embed 'GeneralComunBundle:Public:_show.html.twig' %}
+        {% block datos %}    
+            <tr><th>Nombre     </th><td>{{ entity.nombre }}</td></tr>
+            <tr><th>Perfil     </th><td>{{ entity.perfil }}</td></tr>                    
+            <tr><th>IngresoEl  </th><td>{{ entity.ingresoEl|date('d/m/Y') }}</td></tr>    
+            <tr><th>RetiroEl   </th><td>{% if entity.retiroEl %}{{ entity.retiroEl|date('d/m/Y') }}{% endif%}</td></tr>    
+            <tr><th>Login      </th><td>{{ entity.login }}</td></tr>
+            <tr><th>CreadoEl   </th><td>{{ entity.creadoEl|date('d/m/Y h:i') }}</td></tr>    
+            <tr><th>ModifiEl   </th><td>{% if entity.modifiEl %}{{ entity.modifiEl|date('d/m/Y h:i') }}{% endif%}</td></tr>        
+        {% endblock %}
+        
+        {% block datosTrans %}      
+            {% if entity.accesos|length > 0 %}<tr><th>Accesos</th><td>{{ entity.accesos|length }}</td></tr>{% endif %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es">
+    <head>
+        <title>{% block title %}{% endblock %} - Caja Petrolera de Salud.</title>
+        <link href="{{ asset('bundles/generalcomun/imagenes/favicon.png') }}" rel="shortcut icon"/>
+        {#<link href="{{ asset('bundles/generalcomun/css/blanco.css') }}"       rel="stylesheet" type="text/css"/>#}
+        <link href="{{ asset('bundles/generalcomun/css/960.css') }}"          rel="stylesheet" type="text/css"/>
+        {% block jScYCss %}{% endblock %}
+    </head>
+    <body>
+        <div class="container_16">
+            {% block cuerpo %}BODY{% endblock %}
+        </div> 
+    </body>
+</html>

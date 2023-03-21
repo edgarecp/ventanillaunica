@@ -1,0 +1,19 @@
+<div class="grid_12 prefix_2">
+    <fieldset>
+        <legend>Derivar</legend>
+        <form action="{{ path( ruta ~ '_create' ) }}" method="POST" {{ form_enctype(form) }}>
+            <div>
+                <div>{{ form_errors(form) }}</div>
+                <div>{{ form_row(form.servicio) }}</div>
+                <div>
+                    {{ form_errors(form.observacion) }}
+                    {{ form_label(form.observacion) }}
+                    {{ form_widget(form.observacion, { 'attr' : { 'class': 'largo' }}) }}
+                </div>
+                {{ form_rest(form) }}
+            </div>
+            <center><button type="submit" class='btn'>GRABAR</button></center>
+        </form>
+    </fieldset>
+</div><div class="clear"></div>
+<a href="{{ path( 'adm_docrec_show', { 'id': entity.id }) }}" class='btn_ga'>Volver</a>

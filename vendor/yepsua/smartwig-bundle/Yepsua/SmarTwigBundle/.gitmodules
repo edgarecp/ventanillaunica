@@ -1,0 +1,3 @@
+[submodule "jQuery4PHP"]
+	path = vendor
+	url = https://oyepez003@github.com/oyepez003/jQuery4PHP.git

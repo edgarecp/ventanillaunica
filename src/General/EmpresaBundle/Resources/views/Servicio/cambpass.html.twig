@@ -1,0 +1,17 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block cuerpo %}
+    
+<div class="grid_12 prefix_2">
+<br />
+<form action="{{ path('servicio_cambpass_update) }}" method="post" {{ form_enctype(form) }}>
+   <div>
+      {{ form_errors(form) }}
+      {% include 'GeneralComunBundle:Publico:_cambiarPassword.html.twig' with { 'titulo': 'Modificar Acceso' } %}
+      {{ form_rest(form) }}
+   </div>
+   <div><center><button type="submit" class='btn'>GRABAR</button></center></div>
+</form>
+</div><div class="clear"></div>
+<script type="text/javascript">$(function(){ $("form:not(.filter) :input:visible:enabled:first").focus(); });</script>
+{% endblock %}

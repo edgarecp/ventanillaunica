@@ -1,0 +1,21 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block oJScYCss %} {{ form_stylesheet(form) }} {{ form_javascript(form) }} {% endblock %}
+
+{% block cuerpo %}
+   {% set tam = '10' %}
+        
+    {% embed 'GeneralComunBundle:Public:_new.html.twig' %}
+        {% block datos %}
+        <div>{{ form_row(form.nombre) }}</div>
+        <div>{{ form_row(form.abreviatura) }}</div>
+        <div>{{ form_row(form.direccion) }}</div>
+        <div>
+           {{ form_errors(form.foto) }}
+	       {{ form_label(form.foto) }}
+	       {{ form_widget(form.foto) }}<br>
+	       <img src="{{ asset(directorio_imagenes ~ 'sucursal/' ~ entity.foto) }}" />
+	    </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

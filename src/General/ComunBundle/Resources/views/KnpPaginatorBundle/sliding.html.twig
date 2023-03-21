@@ -1,0 +1,39 @@
+{# default Sliding pagination control implementation #}
+
+{% if pageCount > 1 %}
+<div class="pagination">
+<table class="sinBorde">
+    <tr>
+        <td width="12%">
+    {% if first is defined and current != first %}
+        <span class="first"><a href="{{ path(route, query|merge({(pageParameterName): first})) }}" >&lt;&lt;</a></span>
+    {% endif %}
+
+    {% if previous is defined %}
+        <span class="previous"><a href="{{ path(route, query|merge({(pageParameterName): previous})) }}" >&lt;</a></span>
+    {% endif %}
+    
+        </td><td align="center" width="76%">
+    {% for page in pagesInRange %}
+        {% if page != current %}
+            <span class="page"><a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a></span>
+        {% else %}
+            <span class="current">{{ page }}</span>
+        {% endif %}
+    {% endfor %}
+        </td><td width="12%">
+        
+    {% if next is defined %}
+        <span class="next"><a href="{{ path(route, query|merge({(pageParameterName): next})) }}" >&gt;</a></span>
+    {% endif %}
+
+    {% if last is defined and current != last %}
+        <span class="last"><a href="{{ path(route, query|merge({(pageParameterName): last})) }}" >&gt;&gt;</a></span>
+    {% endif %}
+        </td>
+    </tr>
+</table>     
+</div>
+{% else %}
+    &nbsp;
+{% endif %}

@@ -1,0 +1,36 @@
+{% extends "GeneralComunBundle::blanco.html.twig" %}
+{% block cuerpo %}
+{% include 'GeneralComunBundle:Publico:_tituloReporte.html.twig' with { 'centro': 'Caja Petrolera de Salud', 'centro2': 'HOJA DE RUTA' } %}
+{% include 'CpsFludocAdmBundle:Publico:_docrec.html.twig' with {'colilla': false } %}
+<br />
+{% for i in 1..7 %}
+<table border='1' width='100%'>
+   <tr>
+      <td colspan='9' align='left'><b>Destino:</b></td>
+   </tr><tr>
+      <td colspan='9' align='left'><b>Comentario:</b></td>
+   </tr><tr><td colspan='9'>&nbsp;</td>
+   </tr><tr>
+      <td align='left' width='20%'><b>Fecha de Ingreso:</b></td>
+      <td width='5%'>&nbsp;</td>
+      <td width='5%'>&nbsp;</td>
+      <td width='8%'>&nbsp;</td>
+      <td align='center' width='20%'><b>Fecha de Salida:</b></td>
+      <td width='5%'>&nbsp;</td>
+      <td width='5%'>&nbsp;</td>
+      <td width='8%'>&nbsp;</td>
+      <td align='center' width='24%'><b>&nbsp;</b></td>
+   </tr><tr>
+      <td colspan='8'>&nbsp;</td>
+      <td align='center'><b>Firma y sello</b></td>
+   </tr>
+</table>
+<br />
+{% endfor %}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<br /><br />
+Revisa el estado de tu documentacion en la pagina web: www.cps.com.bo/ventanillaunica, ingresando el Codigo y el PIN
+<br /><br />
+{% include 'CpsFludocAdmBundle:Publico:_docrec.html.twig' with {'colilla': true } %}
+{#<script language='JavaScript'>window.print();</script>#}   
+{% endblock %}

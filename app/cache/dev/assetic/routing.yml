@@ -1,0 +1,5 @@
+_assetic:
+    resource: .
+    type: assetic
+_app:
+    resource: /var/www/html/fluDoc_v1_f2.3_20140121/app/config/routing_dev.yml

@@ -1,0 +1,29 @@
+{% extends "GeneralComunBundle::layout.html.twig" %}
+
+{% block cuerpo %}
+    {% set cantTrans = entity.derivaciones|length %}
+
+    {% embed 'GeneralComunBundle:Public:_show.html.twig' %}
+        {% block datos %}{% include "CpsFludocAdmBundle:Docrec:_show.html.twig" %}{% endblock %}
+
+        {% block transacciones %}
+            {% if cantTrans %}
+                <br>
+                {% include 'CpsFludocAdmBundle:Derivacion:_listado.html.twig' %}
+            {% endif %}
+        {% endblock %}
+        
+        {% block acciones %}{% endblock %}
+    {% endembed %}
+
+    {% embed 'GeneralComunBundle:Public:_showAcc.html.twig' %}
+        {% block adicionarBtn %}
+            <a href="{{ path(rut ~ '_imprimir_hojaruta') }}" class='btnGPrn'>Imp-HojaRuta</a>
+            <a href="{{ path(rut ~ '_imprimir_colilla') }}"  class='btnGPrn'>Imp-Colilla</a>
+            {% if cantTrans == 0 %}
+                <a href="{{ path( 'adm_derivacion_new') }}"  class='btn_gm'>Derivar</a>
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
+
+{% endblock %}

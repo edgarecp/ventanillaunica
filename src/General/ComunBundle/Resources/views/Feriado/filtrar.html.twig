@@ -1,0 +1,18 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block cuerpo %}
+   {% embed 'GeneralComunBundle:Public:_filtrar.html.twig' %}
+        {% block datos %}
+        <div>
+            {{ form_label(form.fecha) }}
+            {{ form_widget(form.fil_fecha) }}
+            {{ form_widget(form.fecha) }}
+        </div>
+        <div>
+            {{ form_label(form.nombre) }}
+            {{ form_widget(form.fil_nombre) }}
+            {{ form_widget(form.nombre) }}
+        </div>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

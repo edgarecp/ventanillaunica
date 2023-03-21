@@ -1,0 +1,14 @@
+{% extends "GeneralComunBundle::layout.html.twig" %} 
+
+{% block cuerpo %}
+    {% set cantTrans = entity.usuarios|length %}
+    {% embed 'GeneralComunBundle:Public:_show.html.twig' %}
+        {% block datos %}
+            <tr><th>Nombre</th><td>{{ entity.nombre }}</td></tr>    
+        {% endblock %}
+    
+        {% block datosTrans %}
+           <tr><th>Usuarios</th><td>{{ entity.usuarios|length }}</td></tr>
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

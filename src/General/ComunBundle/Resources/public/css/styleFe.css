@@ -1,0 +1,15 @@
+fieldset.ponerIzq {
+   float:left;
+}
+
+fieldset.normal {
+   clear:right;
+   clear:left;
+}
+
+fieldset.consulta {
+   float:left;
+   min-width: 526px;
+   min-height: 307px;
+}
+
